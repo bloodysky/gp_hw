@@ -1,4 +1,3 @@
-
 <html>
 	<head>
 		<style>
@@ -13,15 +12,17 @@
 		</style>
 	</head>
 	<body>
-		<div id = 'info'><a href='javascript:toggleSwitch();'>toggle</a><br>
+		<div id = 'info'><a href='javascript:toggleSwitch();'>STOP/MOVE</a><br>
 		<button id="change" style="width:30%">right viewport</button></div>
 		<script src="https://threejs.org/build/three.min.js"></script>
 		<script src="https://conjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
 		<script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		
 
 		<script>
-		
+			/*聚光燈無法成功*/
+			/*var spotLight,spotLightHelper;*/
 			var scene, camera;
 			var cones, theta = 0;
 			var toggle = false, changeCamera = false;
@@ -51,6 +52,12 @@
 			
 			function init(){
 			
+				/*spotLight = new THREE.SpotLight( 0xc89854 );
+				spotLight.position.set( -100, 100, 50 );
+				scene.add( spotLight );
+				spotLightHelper = new THREE.SpotLightHelper( spotLight );
+				scene.add( spotLightHelper );*/
+				
 				renderer = new THREE.WebGLRenderer();
 				
 				width = window.innerWidth;
@@ -73,9 +80,6 @@
 				window.addEventListener('resize', onWindowResize, false);
 				
 				///////////////////////////////////////////////////////////
-				/*boxG = new THREE.BoxGeometry(40, 10, 40);
-				box = new THREE.Mesh(boxG, new THREE.MeshNormalMaterial());
-				scene.add(box);*/
 				geometry = new THREE.Geometry();
 				geometry.vertices.push(
 					new THREE.Vector3(59.2, 0, 0),
@@ -98,7 +102,7 @@
 			}
 			
 			function onWindowResize(){
-				//視窗大小調整更新
+				//視窗大小調整
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
 				renderer.setSize(window.innerWidth, window.innerHeight);
@@ -111,7 +115,7 @@
 				cones.rotation.y = Math.PI/2 +theta;
 				cones.position.set(50*Math.cos(theta), 0, -50*Math.sin(theta));
 				if(changeCamera){
-					//第三人稱
+					//第三視角
 					var d = Math.PI/6;
 					var h = 50;
 					camera.position.set(50*Math.cos(theta-d), h, -50*Math.sin(theta-d));
