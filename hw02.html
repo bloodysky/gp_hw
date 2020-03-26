@@ -16,7 +16,8 @@
 	</head>
 	<body>
 		<div id="info">hw02</div>
-		<button align="center" id="play" style="width:20%" >Play</button> 
+		<button align="center" id="play" style="width:25%" >Play</button>
+		
 		<script src="https://threejs.org/build/three.min.js"></script>
 		<script src="https://threejs.org/examples/js/controls/OrbitControls.js">
 		</script>
@@ -49,9 +50,9 @@ $('#play').click ( function() {
 		var camera, scene, renderer;
 		var pos, vel, force;
 		var forceArray = [], posArray = [], velArray = [];
-		var WallsArray = [],disksArray = [], colorArray = [0xFF3333, 0xFF8800, 0xFFFF77, 0x00FFFF, 0x00FF00];//牆陣，球色陣
+		var WallsArray = [],disksArray = [], colorArray = [0x666666, 0xEEEEEE, 0xFF3333, 0xFF9900, 0xFFFF00, 0x00FF00, 0x00FFFF, 0x0000FF, 0x9900FF, 0xFF00FF];//牆陣，球色陣
 		var disklight,diskslight = [];
-		var disk_total = 5;
+		var disk_total = 10;
 
 		var x,z,i,s;
 		
@@ -87,9 +88,9 @@ function init() {
 	for(i = 0; i < disk_total; i++){
 		disk = new THREE.Mesh (new THREE.CylinderGeometry(10,10,4,20,20), new THREE.MeshLambertMaterial({color: colorArray[i]}));
 		
-		/*disk.position.set (x, 1.5, z);*/
+		disk.position.set (x, 1.5, z);
 		/*disk.position.set(i,1.5,i*2);*/
-		disk.pos = new THREE.Vector3 (i,1.5,i*2);
+		/*disk.pos = new THREE.Vector3 (i,1.5,i*2);*/
 		disksArray.push(disk);
 		scene.add(disk);
 		
